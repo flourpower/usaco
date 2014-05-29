@@ -38,6 +38,7 @@ int main() {
 	for(i = 0; i < len; i++){
 		//if (i ==  23)
 		//	cout << "index: " <<  i << " char: " << chrs[i] << endl;
+		if (! isalpha(chrs[i])){continue;}
 		j = i; //start both counters at i
 		k = i;
 		current = 1;
@@ -72,13 +73,13 @@ int main() {
 	for(i = 0; i < len - 1; i++){
 		j = i;
 		k = i + 1;
-		while( ! isalpha(chrs[k])){
+		while( (! isalpha(chrs[k])) && k < len){
 			k++;
 		}
+		if (k == len){continue;}
 		current = 2;
-		if (chrs[j] != chrs[k])
-			continue;
-		
+		if (chrs[j] != chrs[k]){continue;}
+
 		while(j > 0 && k < (len - 1) && chrs[j] == chrs[k]){
 			new_j = j - 1;
 			new_k = k + 1;
@@ -103,7 +104,7 @@ int main() {
 		}
 	}	
 	//finish up
-	fout << "parity: " << parity << endl;
+	cout << "parity: " << parity << endl;
 	fout << max << endl;
 	for (i = start; i <= finish; i++){
 		fout << final[i];
